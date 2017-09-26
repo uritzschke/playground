@@ -3,6 +3,7 @@ package playground.rcp.hyperbola;
 import org.eclipse.core.runtime.IAdapterFactory;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.model.IWorkbenchAdapter;
+import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 import playground.rcp.hyperbola.model.Contact;
 import playground.rcp.hyperbola.model.ContactsEntry;
@@ -21,7 +22,9 @@ public class HyperbolaAdapterFactory implements IAdapterFactory {
 		@Override
 		public ImageDescriptor getImageDescriptor(Object object) {
 			// TODO
-			return null;
+			final ContactsEntry entry = ((ContactsEntry) object);
+			final String key = presenceToKey(entry.getPresence());
+			return AbstractUIPlugin.imageDescriptorFromPlugin(Application.PLUGIN_ID, key);
 		}
 
 		@Override
@@ -48,7 +51,7 @@ public class HyperbolaAdapterFactory implements IAdapterFactory {
 		@Override
 		public ImageDescriptor getImageDescriptor(Object object) {
 			// TODO Auto-generated method stub
-			return null;
+			return AbstractUIPlugin.imageDescriptorFromPlugin(Application.PLUGIN_ID, IImageKeys.GROUP);
 		}
 
 		@Override
@@ -89,6 +92,19 @@ public class HyperbolaAdapterFactory implements IAdapterFactory {
 	@Override
 	public Class<?>[] getAdapterList() {
 		return new Class[] { IWorkbenchAdapter.class };
+	}
+
+	private String presenceToKey(Presence presence) {
+		if (presence == Presence.ONLINE) {
+			return IImageKeys.ONLINE;
+		} else if (presence == Presence.OFFLINE || presence == Presence.INVISIBLE) {
+			return IImageKeys.OFFLINE;
+		} else if (presence == Presence.DO_NOT_DISTURB) {
+			return IImageKeys.DO_NOT_DISTURB;
+		} else if (presence == Presence.AWAY) {
+			return IImageKeys.AWAY;
+		}
+		return null;
 	}
 
 }
