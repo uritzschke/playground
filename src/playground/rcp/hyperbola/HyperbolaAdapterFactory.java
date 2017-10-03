@@ -30,7 +30,7 @@ public class HyperbolaAdapterFactory implements IAdapterFactory {
 		@Override
 		public String getLabel(Object o) {
 			final ContactsEntry entry = ((ContactsEntry) o);
-			return entry.getName() + "-" + entry.getServer();
+			return entry.getNickname() + " (" + entry.getName() + "@" + entry.getServer() + ")";
 		}
 
 		@Override
