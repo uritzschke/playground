@@ -61,7 +61,8 @@ public class HyperbolaAdapterFactory implements IAdapterFactory {
 			final Contact[] entries = group.getEntries();
 			for (final Contact contact : entries) {
 				if (contact instanceof ContactsEntry) {
-					if (((ContactsEntry) contact).getPresence() != Presence.INVISIBLE) {
+					Presence presence = ((ContactsEntry) contact).getPresence();
+					if (presence != Presence.INVISIBLE && presence != Presence.OFFLINE ) {
 						available++;
 					}
 				}
