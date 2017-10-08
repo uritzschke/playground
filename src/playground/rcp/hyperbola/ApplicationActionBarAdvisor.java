@@ -41,6 +41,11 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
 		menuBar.add(helpMenu);
 	}
 
+	protected void fillTrayItem(IMenuManager trayItem) {
+		trayItem.add(aboutAction);
+		trayItem.add(exitAction);
+	}
+
 	@Override
 	protected void makeActions(IWorkbenchWindow window) {
 		exitAction = ActionFactory.QUIT.create(window);
