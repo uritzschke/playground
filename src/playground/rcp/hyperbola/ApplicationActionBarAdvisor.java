@@ -1,7 +1,11 @@
 package playground.rcp.hyperbola;
 
+import org.eclipse.jface.action.ICoolBarManager;
 import org.eclipse.jface.action.IMenuManager;
+import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
+import org.eclipse.jface.action.Separator;
+import org.eclipse.jface.action.ToolBarManager;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.actions.ActionFactory;
 import org.eclipse.ui.actions.ActionFactory.IWorkbenchAction;
@@ -12,15 +16,24 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
 
 	private IWorkbenchAction exitAction;
 	private IWorkbenchAction aboutAction;
+	private IWorkbenchAction addContactAction;
 
 	public ApplicationActionBarAdvisor(IActionBarConfigurer configurer) {
 		super(configurer);
-		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	protected void fillCoolBar(ICoolBarManager coolBar) {
+		final IToolBarManager toolbar = new ToolBarManager(coolBar.getStyle());
+		coolBar.add(toolbar);
+		toolbar.add(addContactAction);
 	}
 
 	@Override
 	protected void fillMenuBar(IMenuManager menuBar) {
 		final MenuManager hyperbolaMenu = new MenuManager("&Hyperbola", "hyperbola");
+		hyperbolaMenu.add(addContactAction);
+		hyperbolaMenu.add(new Separator());
 		hyperbolaMenu.add(exitAction);
 		final MenuManager helpMenu = new MenuManager("&Help", "help");
 		helpMenu.add(aboutAction);
@@ -34,6 +47,8 @@ public class ApplicationActionBarAdvisor extends ActionBarAdvisor {
 		register(exitAction);
 		aboutAction = ActionFactory.ABOUT.create(window);
 		register(aboutAction);
+		addContactAction = new AddContactAction(window);
+		register(addContactAction);
 	}
 
 }

@@ -3,6 +3,7 @@ package playground.rcp.hyperbola.views;
 import org.eclipse.core.runtime.IAdapterFactory;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.viewers.TreeViewer;
+import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.model.BaseWorkbenchContentProvider;
@@ -25,6 +26,10 @@ public class ContactsView extends ViewPart {
 
 	public ContactsView() {
 		super();
+	}
+
+	private void createContextMenu(Viewer viewer) {
+
 	}
 
 	@Override
