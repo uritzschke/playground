@@ -6,4 +6,5 @@ This is a simple personal playground for myself to learn Eclipse RCP. It follows
 There is also a GitHUB project which includes the completed project: https://github.com/eclipsesource/es-trainings-hyperbola
 
 ====Useful Ressources====
+
 https://wiki.eclipse.org/Rich_Client_Platform
