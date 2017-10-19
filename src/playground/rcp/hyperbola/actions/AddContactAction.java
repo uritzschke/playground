@@ -1,4 +1,4 @@
-package playground.rcp.hyperbola;
+package playground.rcp.hyperbola.actions;
 
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.viewers.ISelection;
@@ -10,6 +10,7 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.actions.ActionFactory.IWorkbenchAction;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
+import playground.rcp.hyperbola.IImageKeys;
 import playground.rcp.hyperbola.model.ContactsEntry;
 import playground.rcp.hyperbola.model.ContactsGroup;
 import playground.rcp.hyperbola.views.AddContactDialog;

@@ -29,5 +29,15 @@
             restorable="true">
       </view>
    </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="playground.rcp.hyperbola.editor.ChatEditor"
+            default="false"
+            icon="icons/chat.gif"
+            id="playground.rcp.hyperbola.editors.chat"
+            name="ChatEditor">
+      </editor>
+   </extension>
 
 </plugin>
