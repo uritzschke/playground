@@ -2,15 +2,19 @@ package playground.rcp.hyperbola.views;
 
 import org.eclipse.core.runtime.IAdapterFactory;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.jface.viewers.DoubleClickEvent;
+import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.ui.actions.ActionFactory.IWorkbenchAction;
 import org.eclipse.ui.model.BaseWorkbenchContentProvider;
 import org.eclipse.ui.model.WorkbenchLabelProvider;
 import org.eclipse.ui.part.ViewPart;
 
 import playground.rcp.hyperbola.HyperbolaAdapterFactory;
+import playground.rcp.hyperbola.actions.ChatAction;
 import playground.rcp.hyperbola.model.Contact;
 import playground.rcp.hyperbola.model.ContactsEntry;
 import playground.rcp.hyperbola.model.ContactsGroup;
@@ -23,6 +27,8 @@ public class ContactsView extends ViewPart {
 	private final IAdapterFactory adapterFactory = new HyperbolaAdapterFactory();
 	private Session session;
 	private TreeViewer treeViewer;
+
+	private IWorkbenchAction chatAction;
 
 	public ContactsView() {
 		super();
@@ -47,6 +53,8 @@ public class ContactsView extends ViewPart {
 				treeViewer.refresh();
 			}
 		});
+
+		makeActions();
 
 	}
 
@@ -73,4 +81,17 @@ public class ContactsView extends ViewPart {
 		treeViewer.getControl().setFocus();
 	}
 
+	private void makeActions() {
+		chatAction = new ChatAction(getSite().getWorkbenchWindow());
+
+		// Initiate a chat on double-click
+		treeViewer.addDoubleClickListener(new IDoubleClickListener() {
+
+			@Override
+			public void doubleClick(DoubleClickEvent event) {
+				chatAction.run();
+
+			}
+		});
+	}
 }
